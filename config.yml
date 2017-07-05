@@ -1,0 +1,11 @@
+jdbc:
+  default:
+    url: jdbc:mysql://localhost:3306/sourcedb
+    driverClassName: com.mysql.jdbc.Driver
+    initialSize: 1
+    username: root
+    password:
+
+jooq:
+  dialect: MYSQL
+  executeLogging: true
