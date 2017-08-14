@@ -14,7 +14,7 @@ Notably, [jOOQ](https://www.jooq.org) as a SQL builder with code generation.
       
 ## Build the Demo
 
-**Note:** run the script `testdb.sql` on a database to create a schema. [MySQL](https://www.mysql.com) in used in the example.
+**Note:** run the script `testdb.sql` against a database to create a schema. [MySQL](https://www.mysql.com) in used in the example.
       
 Here is how to build it:
 ```bash
@@ -22,7 +22,10 @@ git clone git@github.com:bootique-examples/bootique-jooq-demo.git
 cd bootique-jooq-demo
 mvn package
 ```
-Source code generation is integrated into Maven build process via the official **jOOQ-codegen-maven** plugin:
+One of the main jOOQ's assets is code generation. jOOQ's code generator reverse-engineers a database schema 
+into a set of Java classes modelling tables, records, sequences, POJOs, DAOs, stored procedures, user-defined types, etc.
+There are two approaches to generate source code: 
+1. Maven build process via the official **jOOQ-codegen-maven** plugin:
 
 *pom.xml*
 ```xml
@@ -61,7 +64,8 @@ Source code generation is integrated into Maven build process via the official *
     </executions>
 </plugin>
 ```
-Alternatively, code can be generated via command-line. First of all, configure jOOQ's code generator in *library.xml*:
+2. Code generation via command-line. 
+It'll need configuration of jOOQ's code generator in the *library.xml*:
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <configuration xmlns="http://www.jooq.org/xsd/jooq-codegen-3.8.0.xsd">
@@ -86,20 +90,20 @@ Alternatively, code can be generated via command-line. First of all, configure j
     </generator>
 </configuration>
 ```
-Put the XML configuration file, jooq-3.8.2.jar, jooq-meta-3.8.2.jar, jooq-codegen-3.8.2.jar, the JDBC driver into a directory, 
+Then put the XML configuration files jooq-3.8.2.jar, jooq-meta-3.8.2.jar, jooq-codegen-3.8.2.jar, the JDBC driver into a directory, 
 e.g. temporal one. 
 
-Then go into it:
+Go into the directory:
 ```bash
 cd  $TMPDIR
 ```
-Call `org.jooq.util.GenerationTool` class with the above property file as argument:
+Call `org.jooq.util.GenerationTool` class with the `library.xml` file as an argument:
 ```bash
 java -classpath \ 
 jooq-3.8.2.jar:jooq-meta-3.8.2.jar:jooq-codegen-3.8.2.jar:mysql-connector-java-6.0.6.jar:. \ 
 org.jooq.util.GenerationTool ~/bootique-jooq-demo/src/main/resources/library.xml
 ```
-java -classpath jooq-3.8.2.jar:jooq-meta-3.8.2.jar:jooq-codegen-3.8.2.jar:mysql-connector-java-6.0.6.jar:. org.jooq.util.GenerationTool ~/bootique-jooq-demo/src/main/resources/library.xml
+
 ## Run the Demo 
 
 Check the options available in your app:
@@ -140,21 +144,21 @@ java -jar target/bootique.jooq.demo-1.0-SNAPSHOT.jar --config=config.yml --demo
 ```
 Result:
 ```
-+----+---------------+---------------------------------+
-|  id|name           |host                             |
-+----+---------------+---------------------------------+
-|   1|ObjectStyle LLC|https://www.objectstyle.com/about|
-+----+---------------+---------------------------------+
-+----+--------+-----------------------------------------+
-|  id|name    |host                                     |
-+----+--------+-----------------------------------------+
-|   2|Bootique|http://bootique.io/docs/0/getting-started|
-+----+--------+-----------------------------------------+
-+----+--------+--------------------------------+
-|  id|name    |host                            |
-+----+--------+--------------------------------+
-|   3|LinkMove|https://github.com/nhl/link-move|
-+----+--------+--------------------------------+
++----+---------------+-----------------------------------------+
+|  id|name           |host                                     |
++----+---------------+-----------------------------------------+
+|   1|ObjectStyle LLC|https://www.objectstyle.com/about        |
++----+---------------+-----------------------------------------+
++----+---------------+-----------------------------------------+
+|  id|name           |host                                     |
++----+---------------+-----------------------------------------+
+|   2|Bootique       |http://bootique.io/docs/0/getting-started|
++----+---------------+-----------------------------------------+
++----+---------------+-----------------------------------------+
+|  id|name           |host                                     |
++----+---------------+-----------------------------------------+
+|   3|LinkMove       |https://github.com/nhl/link-move         |
++----+---------------+-----------------------------------------+
 
 ```
 
