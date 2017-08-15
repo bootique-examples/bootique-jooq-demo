@@ -91,35 +91,24 @@
                 <groupId>org.jooq</groupId>
                 <artifactId>jooq-codegen-maven</artifactId>
                 <version>${jooq-version}</version>
-
-                <executions>
-                    <execution>
-                        <id>java-generator</id>
-                        <phase>generate-sources</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-
-                        <configuration>
-                            <jdbc>
-                                <driver>com.mysql.jdbc.Driver</driver>
-                                <url>jdbc:mysql://localhost:3306</url>
-                                <user>root</user>
-                            </jdbc>
-                            <generator>
-                                <database>
-                                    <name>org.jooq.util.mysql.MySQLDatabase</name>
-                                    <includes>.*</includes>
-                                    <inputSchema>testdb</inputSchema>
-                                </database>
-                                <target>
-                                    <packageName>io.bootique.jooq.demo.generated</packageName>
-                                    <directory>/Users/your_user/bootique-jooq-demo/src/main/java</directory>
-                                </target>
-                            </generator>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <jdbc>
+                        <driver>com.mysql.jdbc.Driver</driver>
+                        <url>jdbc:mysql://localhost:3306</url>
+                        <user>root</user>
+                    </jdbc>
+                    <generator>
+                        <database>
+                            <name>org.jooq.util.mysql.MySQLDatabase</name>
+                            <includes>.*</includes>
+                            <inputSchema>testdb</inputSchema>
+                        </database>
+                        <target>
+                            <packageName>io.bootique.jooq.demo.generated</packageName>
+                            <directory>/Users/your_user/bootique-jooq-demo/src/main/java</directory>
+                        </target>
+                    </generator>
+                </configuration>
             </plugin>
         </plugins>
     </build>

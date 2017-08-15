@@ -25,7 +25,7 @@ mvn package
 One of the main jOOQ's assets is code generation. jOOQ's code generator reverse-engineers a database schema 
 into a set of Java classes modelling tables, records, sequences, POJOs, DAOs, stored procedures, user-defined types, etc.
 There are two approaches to generate source code: 
-1. Maven build process via the official **jOOQ-codegen-maven** plugin:
+1. **jOOQ-codegen-maven** plugin:
 
 *pom.xml*
 ```xml
@@ -33,38 +33,33 @@ There are two approaches to generate source code:
     <groupId>org.jooq</groupId>
     <artifactId>jooq-codegen-maven</artifactId>
     <version>${jooq-version}</version>
-
-    <executions>
-        <execution>
-            <id>java-generator</id>
-            <phase>generate-sources</phase>
-            <goals>
-                <goal>generate</goal>
-            </goals>
-
-            <configuration>
-                <jdbc>
-                    <driver>com.mysql.jdbc.Driver</driver>
-                    <url>jdbc:mysql://localhost:3306</url>
-                    <user>root</user>
-                </jdbc>
-                <generator>
-                    <database>
-                        <name>org.jooq.util.mysql.MySQLDatabase</name>
-                        <includes>.*</includes>
-                        <inputSchema>testdb</inputSchema>
-                    </database>
-                    <target>
-                        <packageName>io.bootique.jooq.demo.generated</packageName>
-                        <directory>/Users/your_user/bootique-jooq-demo/src/main/java</directory>
-                    </target>
-                </generator>
-            </configuration>
-        </execution>
-    </executions>
+    <configuration>
+        <jdbc>
+            <driver>com.mysql.jdbc.Driver</driver>
+            <url>jdbc:mysql://localhost:3306</url>
+            <user>root</user>
+        </jdbc>
+        <generator>
+            <database>
+                <name>org.jooq.util.mysql.MySQLDatabase</name>
+                <includes>.*</includes>
+                <inputSchema>testdb</inputSchema>
+            </database>
+            <target>
+                <packageName>io.bootique.jooq.demo.generated</packageName>
+                <directory>/Users/your_user/bootique-jooq-demo/src/main/java</directory>
+            </target>
+        </generator>
+    </configuration>
 </plugin>
 ```
-2. Code generation via command-line. 
+*Run plugin goal*
+```bash
+mvn org.jooq:jooq-codegen-maven:generate -X
+```
+
+2. **command-line**
+
 It'll need configuration of jOOQ's code generator in the *library.xml*:
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
