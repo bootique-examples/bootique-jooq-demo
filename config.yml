@@ -1,7 +1,6 @@
 jdbc:
   default:
-    url: jdbc:mysql://localhost:3306/sourcedb
-    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/testdb?verifyServerCertificate=false&useSSL=false
     initialSize: 1
     username: root
     password:

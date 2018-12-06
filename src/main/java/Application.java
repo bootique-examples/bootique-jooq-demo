@@ -9,11 +9,13 @@ public class Application implements Module {
         Bootique.app(args)
                 .module(Application.class)
                 .autoLoadModules()
-                .run();
+                .exec()
+                .exit();
     }
 
     @Override
     public void configure(Binder binder) {
-        BQCoreModule.extend(binder).addCommand(DemoCommand.class);
+        BQCoreModule.extend(binder)
+                .addCommand(DemoCommand.class);
     }
 }

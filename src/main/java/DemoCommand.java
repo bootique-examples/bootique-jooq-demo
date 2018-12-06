@@ -11,6 +11,7 @@ import org.jooq.Record;
 import org.jooq.Result;
 
 public class DemoCommand extends CommandWithMetadata {
+
     private Provider<JooqFactory> jooqFactoryProvider;
 
     @Inject
