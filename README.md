@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/bootique-examples/bootique-jooq-demo.svg)](https://travis-ci.org/bootique-examples/bootique-jooq-demo)
+[![verify](https://github.com/bootique-examples/bootique-jooq-demo/actions/workflows/verify.yml/badge.svg)](https://github.com/bootique-examples/bootique-jooq-demo/actions/workflows/verify.yml)
 # bootique-jooq-demo
 
 The example explains one of various use cases for using jOOQ in your application built on [Bootique](https://bootique.io).
