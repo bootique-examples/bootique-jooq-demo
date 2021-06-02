@@ -103,7 +103,7 @@ org.jooq.util.GenerationTool ~/bootique-jooq-demo/src/main/resources/library.xml
 
 Check the options available in your app:
 ```bash
-java -jar target/bootique.jooq.demo-1.0-SNAPSHOT.jar 
+java -jar target/bootique-jooq-demo-1.0-SNAPSHOT.jar 
 ```
 ```
 OPTIONS
@@ -135,7 +135,7 @@ jooq:
 ```
 Run the demo command: 
 ```bash
-java -jar target/bootique.jooq.demo-1.0-SNAPSHOT.jar --config=config.yml --demo
+java -jar target/bootique-jooq-demo-1.0-SNAPSHOT.jar --config=config.yml --demo
 ```
 Result:
 ```
